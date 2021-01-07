@@ -23,11 +23,8 @@ public class Lotto {
     }
 
     private boolean isInvalidRange(List<Integer> digits) {
-        boolean flag = false;
-        for (int digit : digits) {
-            flag = flag || isInvalidRange(digit);
-        }
-        return flag;
+        return digits.stream()
+                .anyMatch(digit -> isInvalidRange(digit));
     }
 
     private boolean isInvalidRange(int digit) {
