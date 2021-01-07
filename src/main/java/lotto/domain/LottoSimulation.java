@@ -10,14 +10,14 @@ public class LottoSimulation {
     private final WinningLotto winningLotto;
     private final Lottos lottos;
     private LottoResults lottoResults;
-    
-    public LottoSimulation(int price, String text, int bonusBall) {
-        this.price = new Price(price);
+
+    public LottoSimulation(Price price, String text, String bonusBall) {
+        this.price = price;
         this.winningLotto = initWinningLotto(StringUtils.splitDigit(text), bonusBall);
         this.lottos = Lottos.getInstance(this.price.count());
     }
 
-    private WinningLotto initWinningLotto(String[] digits, int bonusBall) {
+    private WinningLotto initWinningLotto(String[] digits, String bonusBall) {
         List<Integer> lotto = new ArrayList<>();
 
         for (String digit : digits) {
@@ -29,5 +29,13 @@ public class LottoSimulation {
 
     public void confirm() {
         lottoResults = lottos.allCompare(winningLotto);
+    }
+
+    public double getYield() {
+        return (double) lottoResults.getReward() / price.getPrice();
+    }
+
+    public LottoResults getLottoResults() {
+        return lottoResults;
     }
 }

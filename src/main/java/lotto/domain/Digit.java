@@ -7,9 +7,9 @@ public class Digit {
 
     public Digit(String text) {
         try {
-            this.digit = Integer.parseInt(text);
+            this.digit = Integer.parseInt(text.trim());
         } catch (Exception e) {
-            throw new IllegalArgumentException("로또 숫자는 1~45 사이로만 입력해주세요.");
+            throw new IllegalArgumentException("숫자와 , 만 사용해주세요.");
         }
     }
 
@@ -35,5 +35,10 @@ public class Digit {
     @Override
     public int hashCode() {
         return Objects.hash(digit);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(digit);
     }
 }

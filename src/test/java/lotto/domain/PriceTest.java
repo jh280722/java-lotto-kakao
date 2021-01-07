@@ -5,20 +5,17 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class DigitTest {
+public class PriceTest {
     @Test
-    void StringEqual() {
-        assertThat(new Digit(3).toString()).isEqualTo("3");
+    void count() {
+        assertThat(new Price(1000).count()).isEqualTo(1);
+        assertThat(new Price(999).count()).isEqualTo(0);
     }
 
     @Test
-    void invalid_범위() {
+    void negative() {
         assertThatThrownBy(() -> {
-            new Digit(0);
-        }).isInstanceOf(IllegalArgumentException.class);
-
-        assertThatThrownBy(() -> {
-            new Digit(46);
+            new Price(-1);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

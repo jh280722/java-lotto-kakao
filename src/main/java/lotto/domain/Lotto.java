@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -37,7 +38,7 @@ public class Lotto {
 
     public int matchCount(Lotto lotto) {
         return (int) digits.stream()
-                .filter(digit -> lotto.contains(digit))
+                .filter(lotto::contains)
                 .count();
     }
 
@@ -56,5 +57,16 @@ public class Lotto {
     @Override
     public int hashCode() {
         return Objects.hash(digits);
+    }
+
+    @Override
+    public String toString() {
+        StringJoiner strJoiner = new StringJoiner(", ", "[", "]");
+
+        for (Digit digit : digits) {
+            strJoiner.add(digit.toString());
+        }
+
+        return strJoiner.toString();
     }
 }
