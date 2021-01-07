@@ -5,8 +5,23 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoTest {
+    @Test
+    void invalid_번호개수() {
+        assertThatThrownBy(() -> {
+            new Lotto(Arrays.asList(0, 5, 76, 2, 5));
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void invalid_범위() {
+        assertThatThrownBy(() -> {
+                    new Lotto(Arrays.asList(0, 3, 5, 76, 2, 5));
+                }).isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Test
     void sort() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 4, 3, 5, 6));
