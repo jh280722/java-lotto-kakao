@@ -11,15 +11,23 @@ public class LottoTest {
     @Test
     void invalid_번호개수() {
         assertThatThrownBy(() -> {
-            new Lotto(Arrays.asList(0, 5, 76, 2, 5));
+            new Lotto(Arrays.asList(1, 5, 45, 2, 3, 7, 9));
+        }).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> {
+            new Lotto(Arrays.asList(1, 5, 45, 2, 3));
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void invalid_범위() {
         assertThatThrownBy(() -> {
-                    new Lotto(Arrays.asList(0, 3, 5, 76, 2, 5));
-                }).isInstanceOf(IllegalArgumentException.class);
+            new Lotto(Arrays.asList(0, 3, 5, 45, 2, 4));
+        }).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> {
+            new Lotto(Arrays.asList(1, 3, 5, 46, 2, 4));
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
