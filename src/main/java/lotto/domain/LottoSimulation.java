@@ -17,6 +17,13 @@ public class LottoSimulation {
         this.lottos = Lottos.getInstance(this.price.count());
     }
 
+    public LottoSimulation(int price, LottoResults lottoResults) {
+        this.price = new Price(price);
+        this.lottoResults = lottoResults;
+        this.lottos = null;
+        this.winningLotto = null;
+    }
+
     private WinningLotto initWinningLotto(String[] digits, String bonusBall) {
         List<Integer> lotto = new ArrayList<>();
 

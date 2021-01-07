@@ -5,6 +5,7 @@ import lotto.utils.Result;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Lottos {
     public static final int NUMBER = 6;
@@ -48,5 +49,16 @@ public class Lottos {
     @Override
     public int hashCode() {
         return Objects.hash(lottos);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder lottosString = new StringBuilder();
+        for (Lotto lotto : lottos) {
+            lottosString.append(lotto);
+            lottosString.append('\n');
+        }
+
+        return lottosString.toString();
     }
 }

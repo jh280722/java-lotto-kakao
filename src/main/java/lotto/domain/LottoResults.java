@@ -8,7 +8,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoResults {
-    private List<Result> lottoResults;
+    private final List<Result> lottoResults;
+    private static final long THREE_PRICE = 5000;
+    private static final long FOUR_PRICE = 50000;
+    private static final long FIVE_PRICE = 1500000;
+    private static final long BONUSFIVE_PRICE = 30000000;
+    private static final long SIX_PRICE = 2000000000;
 
     public LottoResults() {
         this(Collections.emptyList());

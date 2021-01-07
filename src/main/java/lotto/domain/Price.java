@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Price {
     private static final int DIV_NO = 1000;
-    private final int price;
+    private final long price;
 
     public Price(int price) {
         if (isNegative(price)) {
@@ -18,7 +18,11 @@ public class Price {
     }
 
     public int count() {
-        return price / DIV_NO;
+        return (int) (price / DIV_NO);
+    }
+
+    public long getPrice() {
+        return price;
     }
 
     @Override
