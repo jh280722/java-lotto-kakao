@@ -2,8 +2,6 @@ package lotto.domain;
 
 import lotto.utils.Result;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,10 +12,6 @@ public class LottoResults {
     private static final long FIVE_PRICE = 1500000;
     private static final long BONUSFIVE_PRICE = 30000000;
     private static final long SIX_PRICE = 2000000000;
-
-    public LottoResults() {
-        this(Collections.emptyList());
-    }
 
     public LottoResults(List<Result> results) {
         lottoResults = results;
