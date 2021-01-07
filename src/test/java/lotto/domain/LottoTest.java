@@ -1,13 +1,20 @@
 package lotto.domain;
 
+import lotto.utils.Result;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoTest {
+    @Test
+    void duplicate() {
+        assertThatThrownBy(() -> {
+            new Lotto(Arrays.asList(1, 1, 2, 3, 4, 5));
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Test
     void invalid_번호개수() {
         assertThatThrownBy(() -> {

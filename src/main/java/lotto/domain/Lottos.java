@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.utils.Result;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +26,15 @@ public class Lottos {
 
     public int size() {
         return lottos.size();
+    }
+
+    public LottoResults allCompare(WinningLotto winningLotto) {
+        List<Result> results = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            results.add(winningLotto.compare(lotto));
+        }
+        return new LottoResults(results);
     }
 
     @Override

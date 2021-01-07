@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public class RandomNo {
     public static final int SCOPE = 45;
@@ -18,10 +15,12 @@ public class RandomNo {
     }
 
     public static List<Integer> generateRandomNos(int number) {
-        List<Integer> digits = new ArrayList<>();
-        for (int i = 0; i < number; ++i) {
-            digits.add(getInstance());
+        List<Integer> number1to45 = new ArrayList<>();
+        for (int i = 1; i <= SCOPE; ++i) {
+            number1to45.add(i);
         }
-        return digits;
+
+        Collections.shuffle(number1to45);
+        return number1to45.subList(0, number);
     }
 }

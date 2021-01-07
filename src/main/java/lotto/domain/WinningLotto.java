@@ -1,18 +1,24 @@
 package lotto.domain;
 
+import lotto.utils.Result;
+
 import java.util.Objects;
 
 public class WinningLotto {
-    private final BonusBall bonusBall;
+    private final Digit bonusBall;
     private final Lotto winningLotto;
 
     public WinningLotto(Lotto winningLotto) {
-        this(winningLotto, new BonusBall(37));
+        this(winningLotto, new Digit(37));
     }
 
-    public WinningLotto(Lotto winningLotto, BonusBall bonusBall) {
+    public WinningLotto(Lotto winningLotto, Digit bonusBall) {
         this.bonusBall = bonusBall;
         this.winningLotto = winningLotto;
+    }
+
+    public Result compare(Lotto lotto) {
+        return LottoResults.mapResult(winningLotto.matchCount(lotto), lotto.contains(bonusBall));
     }
 
     @Override

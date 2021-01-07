@@ -12,8 +12,17 @@ public class Lotto {
         if (isInvalidNumberOfDigits(digits)) {
             throw new IllegalArgumentException("숫자는 6개만 입력해주세요.");
         }
+        if (isDuplicate(digits)) {
+            throw new IllegalArgumentException("숫자는 중복되면 안 됩니다.");
+        }
         Collections.sort(digits);
         this.digits = mapIntegerToDigit(digits);
+    }
+
+    private boolean isDuplicate(List<Integer> digits) {
+        return digits.stream()
+                .distinct()
+                .count() != digits.size();
     }
 
     private List<Digit> mapIntegerToDigit(List<Integer> digits) {
@@ -24,6 +33,16 @@ public class Lotto {
 
     private boolean isInvalidNumberOfDigits(List<Integer> digits) {
         return digits.size() != 6;
+    }
+
+    public int matchCount(Lotto lotto) {
+        return (int) digits.stream()
+                .filter(digit -> lotto.contains(digit))
+                .count();
+    }
+
+    public boolean contains(Digit digit) {
+        return digits.contains(digit);
     }
 
     @Override

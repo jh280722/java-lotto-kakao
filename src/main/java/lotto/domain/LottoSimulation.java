@@ -9,6 +9,7 @@ public class LottoSimulation {
     private final Price price;
     private final WinningLotto winningLotto;
     private final Lottos lottos;
+    private LottoResults lottoResults;
     
     public LottoSimulation(int price, String text, int bonusBall) {
         this.price = new Price(price);
@@ -23,14 +24,10 @@ public class LottoSimulation {
             lotto.add(Integer.parseInt(digit.trim()));
         }
 
-        return new WinningLotto(new Lotto(lotto), new BonusBall(bonusBall));
+        return new WinningLotto(new Lotto(lotto), new Digit(bonusBall));
     }
 
-    @Override
-    public String toString() {
-        return "LottoSimulation{" +
-                "price=" + price +
-                ", winningLotto=" + winningLotto +
-                '}';
+    public void confirm() {
+        lottoResults = lottos.allCompare(winningLotto);
     }
 }
