@@ -5,6 +5,14 @@ import java.util.Objects;
 public class Digit {
     private final int digit;
 
+    public Digit(String text) {
+        try {
+            this.digit = Integer.parseInt(text);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("로또 숫자는 1~45 사이로만 입력해주세요.");
+        }
+    }
+
     public Digit(int digit) {
         if (isInvalidRange(digit)) {
             throw new IllegalArgumentException("로또 숫자는 1~45 사이로만 입력해주세요.");

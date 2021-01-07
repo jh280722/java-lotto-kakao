@@ -7,10 +7,10 @@ public class WinningLotto {
     private final Lotto winningLotto;
 
     public WinningLotto(Lotto winningLotto) {
-        this(new BonusBall(37), winningLotto);
+        this(winningLotto, new BonusBall(37));
     }
 
-    public WinningLotto(BonusBall bonusBall, Lotto winningLotto) {
+    public WinningLotto(Lotto winningLotto, BonusBall bonusBall) {
         this.bonusBall = bonusBall;
         this.winningLotto = winningLotto;
     }
