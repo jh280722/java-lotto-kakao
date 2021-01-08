@@ -5,20 +5,20 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LottoNoTest {
+public class LottoNumberTest {
     @Test
     void StringEqual() {
-        assertThat(new LottoNo(3).toString()).isEqualTo("3");
+        assertThat(new LottoNumber(3).toString()).isEqualTo("3");
     }
 
     @Test
     void invalid_범위() {
         assertThatThrownBy(() -> {
-            new LottoNo(0);
+            new LottoNumber(0);
         }).isInstanceOf(IllegalArgumentException.class);
 
         assertThatThrownBy(() -> {
-            new LottoNo(46);
+            new LottoNumber(46);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -11,7 +11,7 @@ public class LottoResultsTest {
     @Test
     void getReward2() {
         LottoResults lottoResults = new LottoResults(Arrays.asList(
-                Result.THREE
+                Result.FIFTH
         ));
 
         assertThat(lottoResults.getReward()).isEqualTo(5000);
@@ -20,12 +20,12 @@ public class LottoResultsTest {
     @Test
     void getReward() {
         LottoResults lottoResults = new LottoResults(Arrays.asList(
-                Result.THREE,
-                Result.THREE,
-                Result.FOUR,
-                Result.SIX,
-                Result.FIVE,
-                Result.BONUSFIVE
+                Result.FIFTH,
+                Result.FIFTH,
+                Result.FOURTH,
+                Result.FIRST,
+                Result.THIRD,
+                Result.SECOND
         ));
 
         assertThat(lottoResults.getReward()).isEqualTo(2031560000L);
@@ -34,28 +34,28 @@ public class LottoResultsTest {
     @Test
     void getResultCount() {
         LottoResults lottoResults = new LottoResults(Arrays.asList(
-                Result.THREE,
-                Result.THREE,
-                Result.FOUR,
-                Result.SIX,
-                Result.FIVE
+                Result.FIFTH,
+                Result.FIFTH,
+                Result.FOURTH,
+                Result.FIRST,
+                Result.THIRD
         ));
 
-        assertThat(lottoResults.getResultCount(Result.THREE)).isEqualTo(2);
-        assertThat(lottoResults.getResultCount(Result.FOUR)).isEqualTo(1);
-        assertThat(lottoResults.getResultCount(Result.BONUSFIVE)).isEqualTo(0);
-        assertThat(lottoResults.getResultCount(Result.SIX)).isEqualTo(1);
+        assertThat(lottoResults.getResultCount(Result.FIFTH)).isEqualTo(2);
+        assertThat(lottoResults.getResultCount(Result.FOURTH)).isEqualTo(1);
+        assertThat(lottoResults.getResultCount(Result.SECOND)).isEqualTo(0);
+        assertThat(lottoResults.getResultCount(Result.FIRST)).isEqualTo(1);
     }
 
     @Test
     void result() {
-        assertThat(LottoResults.mapResult(2, false)).isEqualTo(Result.UNDERTHREE);
-        assertThat(LottoResults.mapResult(3, false)).isEqualTo(Result.THREE);
-        assertThat(LottoResults.mapResult(4, false)).isEqualTo(Result.FOUR);
-        assertThat(LottoResults.mapResult(4, true)).isEqualTo(Result.FOUR);
-        assertThat(LottoResults.mapResult(5, false)).isEqualTo(Result.FIVE);
-        assertThat(LottoResults.mapResult(5, true)).isEqualTo(Result.BONUSFIVE);
-        assertThat(LottoResults.mapResult(6, false)).isEqualTo(Result.SIX);
-        assertThat(LottoResults.mapResult(6, true)).isEqualTo(Result.SIX);
+        assertThat(LottoResults.mapResult(2, false)).isEqualTo(Result.NOTHING);
+        assertThat(LottoResults.mapResult(3, false)).isEqualTo(Result.FIFTH);
+        assertThat(LottoResults.mapResult(4, false)).isEqualTo(Result.FOURTH);
+        assertThat(LottoResults.mapResult(4, true)).isEqualTo(Result.FOURTH);
+        assertThat(LottoResults.mapResult(5, false)).isEqualTo(Result.THIRD);
+        assertThat(LottoResults.mapResult(5, true)).isEqualTo(Result.SECOND);
+        assertThat(LottoResults.mapResult(6, false)).isEqualTo(Result.FIRST);
+        assertThat(LottoResults.mapResult(6, true)).isEqualTo(Result.FIRST);
     }
 }

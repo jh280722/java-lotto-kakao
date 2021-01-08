@@ -24,14 +24,14 @@ public class LottoSimulation {
         this.winningLotto = null;
     }
 
-    private WinningLotto initWinningLotto(String[] digits, String bonusBall) {
-        List<Integer> lotto = new ArrayList<>();
+    private WinningLotto initWinningLotto(String[] lottoNumbers, String bonusBall) {
+        List<LottoNumber> lotto = new ArrayList<>();
 
-        for (String digit : digits) {
-            lotto.add(Integer.parseInt(digit.trim()));
+        for (String lottoNumber : lottoNumbers) {
+            lotto.add(new LottoNumber(lottoNumber));
         }
 
-        return new WinningLotto(new Lotto(lotto), new LottoNo(bonusBall));
+        return new WinningLotto(new Lotto(lotto), new LottoNumber(bonusBall));
     }
 
     public void confirm() {

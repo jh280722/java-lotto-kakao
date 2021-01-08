@@ -2,13 +2,14 @@ package lotto.domain;
 
 import lotto.utils.Result;
 
+import java.util.List;
 import java.util.Objects;
 
 public class WinningLotto {
-    private final LottoNo bonusBall;
+    private final LottoNumber bonusBall;
     private final Lotto winningLotto;
 
-    public WinningLotto(Lotto winningLotto, LottoNo bonusBall) {
+    public WinningLotto(Lotto winningLotto, LottoNumber bonusBall) {
         this.bonusBall = bonusBall;
         this.winningLotto = winningLotto;
     }

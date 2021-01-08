@@ -7,43 +7,37 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<LottoNo> lottoNos;
+    private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(List<Integer> lottoNos) {
-        if (isInvalidNumberOfDigits(lottoNos)) {
+    public Lotto(List<LottoNumber> lottoNumbers) {
+        if (isInvalidNumberOfDigits(lottoNumbers)) {
             throw new IllegalArgumentException("숫자는 6개만 입력해주세요.");
         }
-        if (isDuplicate(lottoNos)) {
+        if (isDuplicate(lottoNumbers)) {
             throw new IllegalArgumentException("숫자는 중복되면 안 됩니다.");
         }
-        Collections.sort(lottoNos);
-        this.lottoNos = mapIntegerToDigit(lottoNos);
+        Collections.sort(lottoNumbers);
+        this.lottoNumbers = lottoNumbers;
     }
 
-    private boolean isDuplicate(List<Integer> lottoNos) {
-        return lottoNos.stream()
+    private boolean isDuplicate(List<LottoNumber> lottoNumbers) {
+        return lottoNumbers.stream()
                 .distinct()
-                .count() != lottoNos.size();
+                .count() != lottoNumbers.size();
     }
 
-    private List<LottoNo> mapIntegerToDigit(List<Integer> lottoNos) {
-        return lottoNos.stream()
-                .map(LottoNo::new)
-                .collect(Collectors.toList());
-    }
-
-    private boolean isInvalidNumberOfDigits(List<Integer> lottoNos) {
-        return lottoNos.size() != 6;
+    private boolean isInvalidNumberOfDigits(List<LottoNumber> lottoNumbers) {
+        return lottoNumbers.size() != 6;
     }
 
     public int matchCount(Lotto lotto) {
-        return (int) lottoNos.stream()
+        return (int) lottoNumbers.stream()
                 .filter(lotto::contains)
                 .count();
     }
 
-    public boolean contains(LottoNo lottoNo) {
-        return lottoNos.contains(lottoNo);
+    public boolean contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
     }
 
     @Override
@@ -51,20 +45,20 @@ public class Lotto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lotto lotto = (Lotto) o;
-        return Objects.equals(lottoNos, lotto.lottoNos);
+        return Objects.equals(lottoNumbers, lotto.lottoNumbers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lottoNos);
+        return Objects.hash(lottoNumbers);
     }
 
     @Override
     public String toString() {
         StringJoiner strJoiner = new StringJoiner(", ", "[", "]");
 
-        for (LottoNo digit : lottoNos) {
-            strJoiner.add(digit.toString());
+        for (LottoNumber lottoNumber : lottoNumbers) {
+            strJoiner.add(lottoNumber.toString());
         }
 
         return strJoiner.toString();

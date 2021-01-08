@@ -1,5 +1,5 @@
 package lotto.utils;
 
 public enum Result {
-    THREE, FOUR, SIX, FIVE, BONUSFIVE, UNDERTHREE
+    FIFTH, FOURTH, FIRST, THIRD, SECOND, NOTHING
 }

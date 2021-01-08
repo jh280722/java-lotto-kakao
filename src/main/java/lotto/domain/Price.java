@@ -12,6 +12,14 @@ public class Price {
         this.price = price;
     }
 
+    public Price(String priceString) {
+        try {
+            this.price = Integer.parseInt(priceString.trim());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("숫자만 입력해주세요.");
+        }
+    }
+
     private boolean isNegative(int price) {
         return price < ZERO;
     }
