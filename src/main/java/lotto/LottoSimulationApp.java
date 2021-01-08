@@ -21,7 +21,7 @@ public class LottoSimulationApp {
         LottoSimulation lotto = new LottoSimulation(price, winningLottoText, bonusBall);
 
         LottoResults lottoResults = lotto.confirm();
-        OutputView.printResult(lottoResults);
+        OutputView.printLottoResults(lottoResults);
         OutputView.printYield(lottoResults);
     }
 }

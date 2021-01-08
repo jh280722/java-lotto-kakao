@@ -1,7 +1,5 @@
 package lotto.utils;
 
-import javax.xml.transform.Result;
-
 public enum LottoResult {
     FIFTH, FOURTH, FIRST, THIRD, SECOND, NOTHING;
 
