@@ -7,43 +7,43 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<Digit> digits;
+    private final List<LottoNo> lottoNos;
 
-    public Lotto(List<Integer> digits) {
-        if (isInvalidNumberOfDigits(digits)) {
+    public Lotto(List<Integer> lottoNos) {
+        if (isInvalidNumberOfDigits(lottoNos)) {
             throw new IllegalArgumentException("숫자는 6개만 입력해주세요.");
         }
-        if (isDuplicate(digits)) {
+        if (isDuplicate(lottoNos)) {
             throw new IllegalArgumentException("숫자는 중복되면 안 됩니다.");
         }
-        Collections.sort(digits);
-        this.digits = mapIntegerToDigit(digits);
+        Collections.sort(lottoNos);
+        this.lottoNos = mapIntegerToDigit(lottoNos);
     }
 
-    private boolean isDuplicate(List<Integer> digits) {
-        return digits.stream()
+    private boolean isDuplicate(List<Integer> lottoNos) {
+        return lottoNos.stream()
                 .distinct()
-                .count() != digits.size();
+                .count() != lottoNos.size();
     }
 
-    private List<Digit> mapIntegerToDigit(List<Integer> digits) {
-        return digits.stream()
-                .map(Digit::new)
+    private List<LottoNo> mapIntegerToDigit(List<Integer> lottoNos) {
+        return lottoNos.stream()
+                .map(LottoNo::new)
                 .collect(Collectors.toList());
     }
 
-    private boolean isInvalidNumberOfDigits(List<Integer> digits) {
-        return digits.size() != 6;
+    private boolean isInvalidNumberOfDigits(List<Integer> lottoNos) {
+        return lottoNos.size() != 6;
     }
 
     public int matchCount(Lotto lotto) {
-        return (int) digits.stream()
+        return (int) lottoNos.stream()
                 .filter(lotto::contains)
                 .count();
     }
 
-    public boolean contains(Digit digit) {
-        return digits.contains(digit);
+    public boolean contains(LottoNo lottoNo) {
+        return lottoNos.contains(lottoNo);
     }
 
     @Override
@@ -51,19 +51,19 @@ public class Lotto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lotto lotto = (Lotto) o;
-        return Objects.equals(digits, lotto.digits);
+        return Objects.equals(lottoNos, lotto.lottoNos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(digits);
+        return Objects.hash(lottoNos);
     }
 
     @Override
     public String toString() {
         StringJoiner strJoiner = new StringJoiner(", ", "[", "]");
 
-        for (Digit digit : digits) {
+        for (LottoNo digit : lottoNos) {
             strJoiner.add(digit.toString());
         }
 

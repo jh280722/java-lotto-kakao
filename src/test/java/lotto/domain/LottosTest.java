@@ -23,7 +23,7 @@ public class LottosTest {
 
     @Test
     void getSize() {
-        Lottos lottos = Lottos.getInstance(3);
+        Lottos lottos = Lottos.getLottosInstance(3);
         assertThat(lottos.size()).isEqualTo(3);
     }
 

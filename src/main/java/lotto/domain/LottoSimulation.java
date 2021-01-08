@@ -14,7 +14,7 @@ public class LottoSimulation {
     public LottoSimulation(Price price, String text, String bonusBall) {
         this.price = price;
         this.winningLotto = initWinningLotto(StringUtils.splitDigit(text), bonusBall);
-        this.lottos = Lottos.getInstance(this.price.count());
+        this.lottos = Lottos.getLottosInstance(this.price.count());
     }
 
     public LottoSimulation(int price, LottoResults lottoResults) {
@@ -31,7 +31,7 @@ public class LottoSimulation {
             lotto.add(Integer.parseInt(digit.trim()));
         }
 
-        return new WinningLotto(new Lotto(lotto), new Digit(bonusBall));
+        return new WinningLotto(new Lotto(lotto), new LottoNo(bonusBall));
     }
 
     public void confirm() {

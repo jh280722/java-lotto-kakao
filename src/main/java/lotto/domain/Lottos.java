@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.Objects;
 
 public class Lottos {
-    public static final int NUMBER = 6;
+    public static final int LIMIT_NUMBER = 6;
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static Lottos getInstance(int number) {
+    public static Lottos getLottosInstance(int limitNumber) {
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < number; ++i) {
-            lottos.add(new Lotto(RandomNo.generateRandomNos(NUMBER)));
+        for (int i = 0; i < limitNumber; ++i) {
+            lottos.add(new Lotto(RandomNo.generateRandomNos(LIMIT_NUMBER)));
         }
 
         return new Lottos(lottos);

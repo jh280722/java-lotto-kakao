@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import java.util.Objects;
-
 public class Price {
+    private static final int ZERO = 0;
     private static final int DIV_NO = 1000;
     private final long price;
 
@@ -14,7 +13,7 @@ public class Price {
     }
 
     private boolean isNegative(int price) {
-        return price < 0;
+        return price < ZERO;
     }
 
     public int count() {
@@ -23,18 +22,5 @@ public class Price {
 
     public long getPrice() {
         return price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Price price1 = (Price) o;
-        return price == price1.price;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(price);
     }
 }

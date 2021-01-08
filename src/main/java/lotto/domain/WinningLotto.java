@@ -5,14 +5,10 @@ import lotto.utils.Result;
 import java.util.Objects;
 
 public class WinningLotto {
-    private final Digit bonusBall;
+    private final LottoNo bonusBall;
     private final Lotto winningLotto;
 
-    public WinningLotto(Lotto winningLotto) {
-        this(winningLotto, new Digit(37));
-    }
-
-    public WinningLotto(Lotto winningLotto, Digit bonusBall) {
+    public WinningLotto(Lotto winningLotto, LottoNo bonusBall) {
         this.bonusBall = bonusBall;
         this.winningLotto = winningLotto;
     }

@@ -11,13 +11,13 @@ public class LottoSimulationApp {
         Price price = new Price(InputView.getPrice());
         OutputView.printLottoCount(price);
 
-        Lottos lottos = Lottos.getInstance(price.count());
+        Lottos lottos = Lottos.getLottosInstance(price.count());
         OutputView.printLottos(lottos);
 
-        String text = InputView.getText();
-        String bonus = InputView.getBonus();
+        String winningLottoText = InputView.getWinningLottoNo();
+        String bonus = InputView.getBonusBall();
 
-        LottoSimulation lotto = new LottoSimulation(price, text, bonus);
+        LottoSimulation lotto = new LottoSimulation(price, winningLottoText, bonus);
 
         lotto.confirm();
         OutputView.printResult(lotto);

@@ -12,7 +12,7 @@ public class WinningLottoTest {
     void 로또번호일치() {
         WinningLotto winningLotto = new WinningLotto(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new Digit(10));
+                new LottoNo(10));
 
         assertThat(winningLotto.compare(new Lotto(Arrays.asList(5, 6, 7, 8, 9, 10)))).isEqualTo(Result.UNDERTHREE);
         assertThat(winningLotto.compare(new Lotto(Arrays.asList(4, 5, 6, 7, 8, 9)))).isEqualTo(Result.THREE);
@@ -24,8 +24,8 @@ public class WinningLottoTest {
 
     @Test
     void create() {
-        WinningLotto winningLotto = new WinningLotto(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        WinningLotto winningLotto = new WinningLotto(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new LottoNo(37));
         assertThat(winningLotto)
-                .isEqualTo(new WinningLotto(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))));
+                .isEqualTo(new WinningLotto(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new LottoNo(37)));
     }
 }
