@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import lotto.utils.Result;
+import lotto.DTO.LottoResults;
+import lotto.utils.LottoResult;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -9,10 +10,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoResultsTest {
     @Test
+    void getYield2() {
+        LottoResults lottoResults = new LottoResults(Arrays.asList(
+                LottoResult.FIFTH,
+                LottoResult.SECOND
+        ), new Price(14000));
+
+        assertThat(lottoResults.getYield()).isEqualTo((double) 30005000 / 14000);
+    }
+
+    @Test
+    void getYield() {
+        LottoResults lottoResults = new LottoResults(Arrays.asList(
+                LottoResult.FIFTH
+        ), new Price(14000));
+
+        assertThat(lottoResults.getYield()).isEqualTo((double) 5000 / 14000);
+    }
+
+    @Test
     void getReward2() {
         LottoResults lottoResults = new LottoResults(Arrays.asList(
-                Result.FIFTH
-        ));
+                LottoResult.FIFTH
+        ), new Price(0));
 
         assertThat(lottoResults.getReward()).isEqualTo(5000);
     }
@@ -20,13 +40,13 @@ public class LottoResultsTest {
     @Test
     void getReward() {
         LottoResults lottoResults = new LottoResults(Arrays.asList(
-                Result.FIFTH,
-                Result.FIFTH,
-                Result.FOURTH,
-                Result.FIRST,
-                Result.THIRD,
-                Result.SECOND
-        ));
+                LottoResult.FIFTH,
+                LottoResult.FIFTH,
+                LottoResult.FOURTH,
+                LottoResult.FIRST,
+                LottoResult.THIRD,
+                LottoResult.SECOND
+        ), new Price(0));
 
         assertThat(lottoResults.getReward()).isEqualTo(2031560000L);
     }
@@ -34,28 +54,28 @@ public class LottoResultsTest {
     @Test
     void getResultCount() {
         LottoResults lottoResults = new LottoResults(Arrays.asList(
-                Result.FIFTH,
-                Result.FIFTH,
-                Result.FOURTH,
-                Result.FIRST,
-                Result.THIRD
-        ));
+                LottoResult.FIFTH,
+                LottoResult.FIFTH,
+                LottoResult.FOURTH,
+                LottoResult.FIRST,
+                LottoResult.THIRD
+        ), new Price(0));
 
-        assertThat(lottoResults.getResultCount(Result.FIFTH)).isEqualTo(2);
-        assertThat(lottoResults.getResultCount(Result.FOURTH)).isEqualTo(1);
-        assertThat(lottoResults.getResultCount(Result.SECOND)).isEqualTo(0);
-        assertThat(lottoResults.getResultCount(Result.FIRST)).isEqualTo(1);
+        assertThat(lottoResults.getResultCount(LottoResult.FIFTH)).isEqualTo(2);
+        assertThat(lottoResults.getResultCount(LottoResult.FOURTH)).isEqualTo(1);
+        assertThat(lottoResults.getResultCount(LottoResult.SECOND)).isEqualTo(0);
+        assertThat(lottoResults.getResultCount(LottoResult.FIRST)).isEqualTo(1);
     }
 
     @Test
     void result() {
-        assertThat(LottoResults.mapResult(2, false)).isEqualTo(Result.NOTHING);
-        assertThat(LottoResults.mapResult(3, false)).isEqualTo(Result.FIFTH);
-        assertThat(LottoResults.mapResult(4, false)).isEqualTo(Result.FOURTH);
-        assertThat(LottoResults.mapResult(4, true)).isEqualTo(Result.FOURTH);
-        assertThat(LottoResults.mapResult(5, false)).isEqualTo(Result.THIRD);
-        assertThat(LottoResults.mapResult(5, true)).isEqualTo(Result.SECOND);
-        assertThat(LottoResults.mapResult(6, false)).isEqualTo(Result.FIRST);
-        assertThat(LottoResults.mapResult(6, true)).isEqualTo(Result.FIRST);
+        assertThat(LottoResult.mapResult(2, false)).isEqualTo(LottoResult.NOTHING);
+        assertThat(LottoResult.mapResult(3, false)).isEqualTo(LottoResult.FIFTH);
+        assertThat(LottoResult.mapResult(4, false)).isEqualTo(LottoResult.FOURTH);
+        assertThat(LottoResult.mapResult(4, true)).isEqualTo(LottoResult.FOURTH);
+        assertThat(LottoResult.mapResult(5, false)).isEqualTo(LottoResult.THIRD);
+        assertThat(LottoResult.mapResult(5, true)).isEqualTo(LottoResult.SECOND);
+        assertThat(LottoResult.mapResult(6, false)).isEqualTo(LottoResult.FIRST);
+        assertThat(LottoResult.mapResult(6, true)).isEqualTo(LottoResult.FIRST);
     }
 }

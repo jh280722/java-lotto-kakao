@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.DTO.LottoResults;
 import lotto.domain.LottoSimulation;
 import lotto.domain.Lottos;
 import lotto.domain.Price;
@@ -15,12 +16,12 @@ public class LottoSimulationApp {
         OutputView.printLottos(lottos);
 
         String winningLottoText = InputView.getWinningLottoNo();
-        String bonus = InputView.getBonusBall();
+        String bonusBall = InputView.getBonusBall();
 
-        LottoSimulation lotto = new LottoSimulation(price, winningLottoText, bonus);
+        LottoSimulation lotto = new LottoSimulation(price, winningLottoText, bonusBall);
 
-        lotto.confirm();
-        OutputView.printResult(lotto);
-        OutputView.printYield(lotto);
+        LottoResults lottoResults = lotto.confirm();
+        OutputView.printResult(lottoResults);
+        OutputView.printYield(lottoResults);
     }
 }

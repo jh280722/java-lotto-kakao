@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import lotto.utils.Result;
+import lotto.utils.LottoResult;
 
-import java.util.List;
 import java.util.Objects;
 
 public class WinningLotto {
@@ -14,8 +13,8 @@ public class WinningLotto {
         this.winningLotto = winningLotto;
     }
 
-    public Result compare(Lotto lotto) {
-        return LottoResults.mapResult(winningLotto.matchCount(lotto), lotto.contains(bonusBall));
+    public LottoResult compareLotto(Lotto lotto) {
+        return LottoResult.mapResult(winningLotto.matchCount(lotto), lotto.contains(bonusBall));
     }
 
     @Override
