@@ -4,6 +4,7 @@ import lotto.DTO.LottoResults;
 import lotto.utils.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoSimulation {
@@ -19,15 +20,14 @@ public class LottoSimulation {
 
     private WinningLotto initWinningLotto(String[] lottoNumbers, String bonusBall) {
         List<LottoNumber> lotto = new ArrayList<>();
-
-        for (String lottoNumber : lottoNumbers) {
-            lotto.add(new LottoNumber(lottoNumber));
-        }
+        Arrays.stream(lottoNumbers)
+                .map(lottoNumber -> new LottoNumber(lottoNumber))
+                .forEach(lotto::add);
 
         return new WinningLotto(new Lotto(lotto), new LottoNumber(bonusBall));
     }
 
-    public LottoResults confirm() {
-        return new LottoResults(lottos.allCompare(winningLotto), price);
+    public LottoResults confirmLottos() {
+        return new LottoResults(lottos.allConfirm(winningLotto), price);
     }
 }

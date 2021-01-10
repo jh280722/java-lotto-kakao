@@ -1,13 +1,21 @@
 package lotto.view;
 
 import lotto.DTO.LottoResults;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Price;
 import lotto.utils.LottoResult;
 
 public class OutputView {
     public static void printLottos(Lottos lottos) {
-        System.out.println(lottos);
+        StringBuilder lottosString = new StringBuilder();
+
+        for (Lotto lotto : lottos.getLottos()) {
+            lottosString.append(lotto);
+            lottosString.append('\n');
+        }
+
+        System.out.println(lottosString);
     }
 
     public static void printYield(LottoResults lottoResults) {

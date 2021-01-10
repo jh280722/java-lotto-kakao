@@ -18,9 +18,9 @@ public class LottoSimulationApp {
         String winningLottoText = InputView.getWinningLottoNo();
         String bonusBall = InputView.getBonusBall();
 
-        LottoSimulation lotto = new LottoSimulation(price, winningLottoText, bonusBall);
+        LottoSimulation lottoSimulation = new LottoSimulation(price, winningLottoText, bonusBall);
+        LottoResults lottoResults = lottoSimulation.confirmLottos();
 
-        LottoResults lottoResults = lotto.confirm();
         OutputView.printLottoResults(lottoResults);
         OutputView.printYield(lottoResults);
     }

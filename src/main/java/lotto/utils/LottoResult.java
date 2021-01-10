@@ -4,11 +4,11 @@ public enum LottoResult {
     FIFTH, FOURTH, FIRST, THIRD, SECOND, NOTHING;
 
     public static final long ZERO = 0;
-    private static final long FIFTH_REWARD = 5000;
-    private static final long FOURTH_REWARD = 50000;
-    private static final long THIRD_REWARD = 1500000;
-    private static final long SECOND_REWARD = 30000000;
-    private static final long FIRST_REWARD = 2000000000;
+    private static final long FIFTH_REWARD = 5_000;
+    private static final long FOURTH_REWARD = 50_000;
+    private static final long THIRD_REWARD = 1_500_000;
+    private static final long SECOND_REWARD = 30_000_000;
+    private static final long FIRST_REWARD = 2_000_000_000;
 
     public static LottoResult mapResult(int count, boolean bonus) {
         if (count == 6) return FIRST;

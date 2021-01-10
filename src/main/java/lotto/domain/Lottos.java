@@ -28,13 +28,16 @@ public class Lottos {
         return lottos.size();
     }
 
-    public List<LottoResult> allCompare(WinningLotto winningLotto) {
-        List<LottoResult> results = new ArrayList<>();
+    public List<LottoResult> allConfirm(WinningLotto winningLotto) {
+        List<LottoResult> lottoResults = new ArrayList<>();
+        lottos.stream()
+                .map(lotto -> winningLotto.confirmLotto(lotto))
+                .forEach(lottoResults::add);
+        return lottoResults;
+    }
 
-        for (Lotto lotto : lottos) {
-            results.add(winningLotto.compareLotto(lotto));
-        }
-        return results;
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     @Override
@@ -48,16 +51,5 @@ public class Lottos {
     @Override
     public int hashCode() {
         return Objects.hash(lottos);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder lottosString = new StringBuilder();
-        for (Lotto lotto : lottos) {
-            lottosString.append(lotto);
-            lottosString.append('\n');
-        }
-
-        return lottosString.toString();
     }
 }

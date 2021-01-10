@@ -13,7 +13,7 @@ public class WinningLotto {
         this.winningLotto = winningLotto;
     }
 
-    public LottoResult compareLotto(Lotto lotto) {
+    public LottoResult confirmLotto(Lotto lotto) {
         return LottoResult.mapResult(winningLotto.matchCount(lotto), lotto.contains(bonusBall));
     }
 

@@ -6,37 +6,38 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class Lotto {
-    private final List<LottoNumber> lottoNumbers;
+    public static final int LOTTO_SIZE = 6;
+    private final List<LottoNumber> lotto;
 
-    public Lotto(List<LottoNumber> lottoNumbers) {
-        if (isInvalidNumberOfDigits(lottoNumbers)) {
+    public Lotto(List<LottoNumber> lotto) {
+        if (isInvalidNumberOfDigits(lotto)) {
             throw new IllegalArgumentException("숫자는 6개만 입력해주세요.");
         }
-        if (isDuplicate(lottoNumbers)) {
+        if (isDuplicate(lotto)) {
             throw new IllegalArgumentException("숫자는 중복되면 안 됩니다.");
         }
-        Collections.sort(lottoNumbers);
-        this.lottoNumbers = lottoNumbers;
+        Collections.sort(lotto);
+        this.lotto = lotto;
     }
 
-    private boolean isDuplicate(List<LottoNumber> lottoNumbers) {
-        return lottoNumbers.stream()
+    private boolean isDuplicate(List<LottoNumber> lotto) {
+        return lotto.stream()
                 .distinct()
-                .count() != lottoNumbers.size();
+                .count() != lotto.size();
     }
 
-    private boolean isInvalidNumberOfDigits(List<LottoNumber> lottoNumbers) {
-        return lottoNumbers.size() != 6;
+    private boolean isInvalidNumberOfDigits(List<LottoNumber> lotto) {
+        return lotto.size() != LOTTO_SIZE;
     }
 
     public int matchCount(Lotto lotto) {
-        return (int) lottoNumbers.stream()
+        return (int) this.lotto.stream()
                 .filter(lotto::contains)
                 .count();
     }
 
     public boolean contains(LottoNumber lottoNumber) {
-        return lottoNumbers.contains(lottoNumber);
+        return lotto.contains(lottoNumber);
     }
 
     @Override
@@ -44,19 +45,19 @@ public class Lotto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lotto lotto = (Lotto) o;
-        return Objects.equals(lottoNumbers, lotto.lottoNumbers);
+        return Objects.equals(this.lotto, lotto.lotto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lottoNumbers);
+        return Objects.hash(lotto);
     }
 
     @Override
     public String toString() {
         StringJoiner strJoiner = new StringJoiner(", ", "[", "]");
 
-        for (LottoNumber lottoNumber : lottoNumbers) {
+        for (LottoNumber lottoNumber : lotto) {
             strJoiner.add(lottoNumber.toString());
         }
 
