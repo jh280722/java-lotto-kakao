@@ -31,7 +31,7 @@ public class Lottos {
     public List<LottoResult> allConfirm(WinningLotto winningLotto) {
         List<LottoResult> lottoResults = new ArrayList<>();
         lottos.stream()
-                .map(lotto -> winningLotto.confirmLotto(lotto))
+                .map(winningLotto::confirmLotto)
                 .forEach(lottoResults::add);
         return lottoResults;
     }
