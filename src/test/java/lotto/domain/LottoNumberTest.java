@@ -7,6 +7,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoNumberTest {
     @Test
+    void cacheNumber() {
+        assertThat(LottoNumber.of(3) == LottoNumber.of(3)).isTrue();
+    }
+
+    @Test
     void StringEqual() {
         assertThat(LottoNumber.of(3).toString()).isEqualTo("3");
     }

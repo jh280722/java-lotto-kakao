@@ -9,6 +9,21 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoTest {
     @Test
+    void countMatchingNumber() {
+        assertThat(Lotto.of(Arrays.asList(6, 2, 3, 4, 5, 1))
+                .countMatchingNumber(Lotto.of(Arrays.asList(12, 7, 8, 9, 10, 11)))).isEqualTo(0);
+        assertThat(Lotto.of(Arrays.asList(6, 2, 3, 4, 5, 1))
+                .countMatchingNumber(Lotto.of(Arrays.asList(6, 7, 8, 9, 10, 11)))).isEqualTo(1);
+        assertThat(Lotto.of(Arrays.asList(6, 2, 3, 4, 5, 1))
+                .countMatchingNumber(Lotto.of(Arrays.asList(6, 2, 3, 4, 5, 1)))).isEqualTo(6);
+    }
+
+    @Test
+    void contains() {
+        assertThat(Lotto.of(Arrays.asList(6, 2, 3, 4, 5, 1)).contains(LottoNumber.of(3))).isTrue();
+    }
+
+    @Test
     void StringEqual() {
         assertThat(Lotto.of(Arrays.asList(6, 2, 3, 4, 5, 1)).toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }

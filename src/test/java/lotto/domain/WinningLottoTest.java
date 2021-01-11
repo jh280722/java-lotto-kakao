@@ -9,8 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningLottoTest {
     @Test
-    void 로또번호일치() {
-        WinningLotto winningLotto = new WinningLotto(Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6)), LottoNumber.of(10));
+    void matchLotto() {
+        WinningLotto winningLotto = WinningLotto.of(Arrays.asList(1, 2, 3, 4, 5, 6), "10");
 
         assertThat(winningLotto.match(Lotto.of(Arrays.asList(5, 6, 7, 8, 9, 10))))
                 .isEqualTo(LottoResult.NOTHING);

@@ -10,6 +10,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoResultsTest {
     @Test
+    void calculateReward2() {
+        LottoResults lottoResults = LottoResults.of(Arrays.asList(
+                LottoResult.NOTHING
+        ), Money.of(14000));
+
+        assertThat(lottoResults.getReward()).isEqualTo(Money.of(0));
+    }
+
+    @Test
+    void calculateReward() {
+        LottoResults lottoResults = LottoResults.of(Arrays.asList(
+                LottoResult.FIFTH,
+                LottoResult.SECOND
+        ), Money.of(14000));
+
+        assertThat(lottoResults.getReward()).isEqualTo(Money.of(30005000));
+    }
+
+    @Test
     void getYield2() {
         LottoResults lottoResults = LottoResults.of(Arrays.asList(
                 LottoResult.FIFTH,
