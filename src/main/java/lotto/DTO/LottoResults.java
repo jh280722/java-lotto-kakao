@@ -7,15 +7,11 @@ import java.util.List;
 
 public class LottoResults {
     private final List<LottoResult> lottoResults;
-    private final long reward;
     private final Price price;
-    private final double yield;
 
     public LottoResults(List<LottoResult> lottoResults, Price price) {
         this.lottoResults = lottoResults;
         this.price = price;
-        reward = getReward();
-        yield = (double) reward / price.getPrice();
     }
 
     public int getResultCount(LottoResult result) {
@@ -33,6 +29,6 @@ public class LottoResults {
     }
 
     public double getYield() {
-        return yield;
+        return (double) getReward() / price.getPrice();
     }
 }
