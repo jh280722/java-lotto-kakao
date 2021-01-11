@@ -29,9 +29,9 @@ public class Lottos {
 
     public List<LottoResult> match(WinningLotto winningLotto) {
         List<LottoResult> lottoResults = new ArrayList<>();
-        lottos.stream()
-                .map(winningLotto::match)
-                .forEach(lottoResults::add);
+        for (Lotto lotto : lottos) {
+            lottoResults.add(winningLotto.match(lotto));
+        }
         return lottoResults;
     }
 

@@ -4,7 +4,6 @@ import lotto.domain.result.LottoResults;
 import lotto.utils.StringUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LottoSimulation {
@@ -19,12 +18,11 @@ public class LottoSimulation {
     }
 
     private WinningLotto initWinningLotto(String[] lottoNumbers, String bonusBall) {
-        List<LottoNumber> lotto = new ArrayList<>();
-        Arrays.stream(lottoNumbers)
-                .map(LottoNumber::of)
-                .forEach(lotto::add);
-
-        return new WinningLotto(new Lotto(lotto), LottoNumber.of(bonusBall));
+        List<Integer> lotto = new ArrayList<>();
+        for (String lottoNumber : lottoNumbers) {
+            lotto.add(StringUtils.parseInt(lottoNumber));
+        }
+        return WinningLotto.of(lotto, bonusBall);
     }
 
     public LottoResults match() {

@@ -24,19 +24,15 @@ public class LottoNumber implements Comparable<LottoNumber> {
             int lottoNumber = Integer.parseInt(lottoNumberText.trim());
             return of(lottoNumber);
         } catch (Exception e) {
-            throw new IllegalArgumentException("숫자와 , 만 사용해주세요.");
+            throw new IllegalArgumentException("숫자와 , 만 입력 가능합니다.");
         }
     }
 
     public static LottoNumber of(int lottoNumber) {
         if (LOTTO_NUMBERS.get(lottoNumber) == null)
             throw new IllegalArgumentException(
-                    MIN_LOTTO_NUMBER + " ~ " + MAX_LOTTO_NUMBER + " 범위의 숫자만 사용해주세요.");
+                    MIN_LOTTO_NUMBER + " ~ " + MAX_LOTTO_NUMBER + " 범위의 숫자만 입력 가능합니다.");
         return LOTTO_NUMBERS.get(lottoNumber);
-    }
-
-    public int getLottoNumber() {
-        return lottoNumber;
     }
 
     @Override
