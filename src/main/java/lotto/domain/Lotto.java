@@ -9,7 +9,7 @@ public class Lotto {
     public static final int LOTTO_SIZE = 6;
     private final List<LottoNumber> lotto;
 
-    public Lotto(List<LottoNumber> lotto) {
+    private Lotto(List<LottoNumber> lotto) {
         if (isInvalidNumberOfDigits(lotto)) {
             throw new IllegalArgumentException("숫자는 6개만 입력해주세요.");
         }

@@ -12,6 +12,7 @@ import static java.util.stream.Collectors.groupingBy;
 
 public class LottoResults {
     private static final long INITIAL_REWARD = 0L;
+    public static final long DEFAULT_COUNT = 0L;
     private final Map<LottoResult, Long> LOTTO_RESULTS;
     private final Money price;
     private final Money reward;
@@ -25,7 +26,14 @@ public class LottoResults {
     public static LottoResults of(List<LottoResult> lottoResults, Money price) {
         Map<LottoResult, Long> lotto_Results = lottoResults.stream()
                 .collect(groupingBy(Function.identity(), counting()));
+        fillDefaultCount(lotto_Results);
         return new LottoResults(lotto_Results, price);
+    }
+
+    private static void fillDefaultCount(Map<LottoResult, Long> lotto_Results) {
+        for (LottoResult lottoResult : LottoResult.values()) {
+            lotto_Results.putIfAbsent(lottoResult, DEFAULT_COUNT);
+        }
     }
 
     private Money calculateReward() {

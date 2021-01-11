@@ -8,11 +8,11 @@ public class RandomNo {
     public static final int FIRST_INDEX = 0;
     public static final int SCOPE = 45;
 
-    public static List<LottoNumber> generateRandomNumbers(final int lottoNumberSize) {
-        List<LottoNumber> lottoNumbers = new ArrayList<>();
+    public static List<Integer> generateRandomNumbers(final int lottoNumberSize) {
+        List<Integer> lottoNumbers = new ArrayList<>();
 
         for (int i = 1; i <= SCOPE; i++) {
-            lottoNumbers.add(LottoNumber.of(i));
+            lottoNumbers.add(i);
         }
 
         Collections.shuffle(lottoNumbers);

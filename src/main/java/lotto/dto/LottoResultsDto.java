@@ -18,6 +18,7 @@ public class LottoResultsDto {
     public static LottoResultsDto from(LottoResults lottoResults) {
         Map<LottoResult, Long> sortedLottoResults = new TreeMap<>(lottoResults.getLOTTO_RESULTS())
                 .descendingMap();
+        sortedLottoResults.remove(LottoResult.NOTHING);
         return new LottoResultsDto(sortedLottoResults, lottoResults.getYield());
     }
 

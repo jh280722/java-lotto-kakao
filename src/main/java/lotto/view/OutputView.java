@@ -40,6 +40,7 @@ public class OutputView {
         for (Map.Entry<LottoResult, Long> entry : lottoResults.getLOTTO_RESULTS().entrySet()) {
             lottoResultsString.append(entry.getKey().getRewardExplain())
                     .append(entry.getValue())
+                    .append("개")
                     .append(LINE_BREAK);
         }
         System.out.println(lottoResultsString);

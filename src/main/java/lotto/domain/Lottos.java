@@ -17,7 +17,7 @@ public class Lottos {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < limitNumber; ++i) {
-            lottos.add(new Lotto(RandomNo.generateRandomNumbers(LIMIT_NUMBER)));
+            lottos.add(Lotto.of(RandomNo.generateRandomNumbers(LIMIT_NUMBER)));
         }
 
         return new Lottos(lottos);
