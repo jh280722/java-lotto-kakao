@@ -8,17 +8,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LottoNumberTest {
     @Test
     void StringEqual() {
-        assertThat(new LottoNumber(3).toString()).isEqualTo("3");
+        assertThat(LottoNumber.of(3).toString()).isEqualTo("3");
     }
 
     @Test
     void invalid_범위() {
         assertThatThrownBy(() -> {
-            new LottoNumber(0);
+            LottoNumber.of(0);
         }).isInstanceOf(IllegalArgumentException.class);
 
         assertThatThrownBy(() -> {
-            new LottoNumber(46);
+            LottoNumber.of(46);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

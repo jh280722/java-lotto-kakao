@@ -12,7 +12,7 @@ public class RandomNo {
         List<LottoNumber> lottoNos = new ArrayList<>();
 
         for (int i = 1; i <= SCOPE; i++) {
-            lottoNos.add(new LottoNumber(i));
+            lottoNos.add(LottoNumber.of(i));
         }
 
         Collections.shuffle(lottoNos);

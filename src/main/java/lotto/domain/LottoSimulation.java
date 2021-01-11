@@ -21,10 +21,10 @@ public class LottoSimulation {
     private WinningLotto initWinningLotto(String[] lottoNumbers, String bonusBall) {
         List<LottoNumber> lotto = new ArrayList<>();
         Arrays.stream(lottoNumbers)
-                .map(lottoNumber -> new LottoNumber(lottoNumber))
+                .map(LottoNumber::of)
                 .forEach(lotto::add);
 
-        return new WinningLotto(new Lotto(lotto), new LottoNumber(bonusBall));
+        return new WinningLotto(new Lotto(lotto), LottoNumber.of(bonusBall));
     }
 
     public LottoResults confirmLottos() {

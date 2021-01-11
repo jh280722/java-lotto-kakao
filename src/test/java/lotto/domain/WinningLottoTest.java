@@ -10,85 +10,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class WinningLottoTest {
     @Test
     void 로또번호일치() {
-        WinningLotto winningLotto = new WinningLotto(
-                new Lotto(Arrays.asList(
-                        new LottoNumber(1),
-                        new LottoNumber(2),
-                        new LottoNumber(3),
-                        new LottoNumber(4),
-                        new LottoNumber(5),
-                        new LottoNumber(6)
-                )),
-                new LottoNumber(10));
+        WinningLotto winningLotto = new WinningLotto(Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6)), LottoNumber.of(10));
 
-        assertThat(winningLotto.confirmLotto(new Lotto(Arrays.asList(
-                new LottoNumber(5),
-                new LottoNumber(6),
-                new LottoNumber(7),
-                new LottoNumber(8),
-                new LottoNumber(9),
-                new LottoNumber(10)
-        )))).isEqualTo(LottoResult.NOTHING);
-        assertThat(winningLotto.confirmLotto(new Lotto(Arrays.asList(
-                new LottoNumber(4),
-                new LottoNumber(5),
-                new LottoNumber(6),
-                new LottoNumber(7),
-                new LottoNumber(8),
-                new LottoNumber(9)
-        )))).isEqualTo(LottoResult.FIFTH);
-        assertThat(winningLotto.confirmLotto(new Lotto(Arrays.asList(
-                new LottoNumber(3),
-                new LottoNumber(4),
-                new LottoNumber(5),
-                new LottoNumber(6),
-                new LottoNumber(7),
-                new LottoNumber(8)
-        )))).isEqualTo(LottoResult.FOURTH);
-        assertThat(winningLotto.confirmLotto(new Lotto(Arrays.asList(
-                new LottoNumber(2),
-                new LottoNumber(3),
-                new LottoNumber(4),
-                new LottoNumber(5),
-                new LottoNumber(6),
-                new LottoNumber(9)
-        )))).isEqualTo(LottoResult.THIRD);
-        assertThat(winningLotto.confirmLotto(new Lotto(Arrays.asList(
-                new LottoNumber(2),
-                new LottoNumber(3),
-                new LottoNumber(4),
-                new LottoNumber(5),
-                new LottoNumber(6),
-                new LottoNumber(10)
-        )))).isEqualTo(LottoResult.SECOND);
-        assertThat(winningLotto.confirmLotto(new Lotto(Arrays.asList(
-                new LottoNumber(2),
-                new LottoNumber(3),
-                new LottoNumber(4),
-                new LottoNumber(5),
-                new LottoNumber(6),
-                new LottoNumber(1)
-        )))).isEqualTo(LottoResult.FIRST);
+        assertThat(winningLotto.confirmLotto(Lotto.of(Arrays.asList(5, 6, 7, 8, 9, 10))))
+                .isEqualTo(LottoResult.NOTHING);
+        assertThat(winningLotto.confirmLotto(Lotto.of(Arrays.asList(5, 6, 7, 8, 9, 4))))
+                .isEqualTo(LottoResult.FIFTH);
+        assertThat(winningLotto.confirmLotto(Lotto.of(Arrays.asList(5, 6, 7, 8, 3, 4))))
+                .isEqualTo(LottoResult.FOURTH);
+        assertThat(winningLotto.confirmLotto(Lotto.of(Arrays.asList(5, 6, 9, 2, 3, 4))))
+                .isEqualTo(LottoResult.THIRD);
+        assertThat(winningLotto.confirmLotto(Lotto.of(Arrays.asList(2, 3, 4, 5, 6, 10))))
+                .isEqualTo(LottoResult.SECOND);
+        assertThat(winningLotto.confirmLotto(Lotto.of(Arrays.asList(2, 3, 4, 5, 6, 1))))
+                .isEqualTo(LottoResult.FIRST);
     }
 
     @Test
     void create() {
-        WinningLotto winningLotto = new WinningLotto(new Lotto(Arrays.asList(
-                new LottoNumber(1),
-                new LottoNumber(2),
-                new LottoNumber(3),
-                new LottoNumber(4),
-                new LottoNumber(5),
-                new LottoNumber(6)
-        )), new LottoNumber(37));
+        WinningLotto winningLotto = new WinningLotto(
+                Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6)), LottoNumber.of(37));
         assertThat(winningLotto)
-                .isEqualTo(new WinningLotto(new Lotto(Arrays.asList(
-                        new LottoNumber(2),
-                        new LottoNumber(3),
-                        new LottoNumber(4),
-                        new LottoNumber(5),
-                        new LottoNumber(6),
-                        new LottoNumber(1)
-                )), new LottoNumber(37)));
+                .isEqualTo(new WinningLotto(Lotto.of(Arrays.asList(2, 3, 4, 5, 6, 1)), LottoNumber.of(37)));
     }
 }

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
@@ -18,6 +19,12 @@ public class Lotto {
         }
         Collections.sort(lotto);
         this.lotto = lotto;
+    }
+
+    public static Lotto of(List<Integer> lotto) {
+        return new Lotto(lotto.stream()
+                .map(LottoNumber::of)
+                .collect(Collectors.toList()));
     }
 
     private boolean isDuplicate(List<LottoNumber> lotto) {
