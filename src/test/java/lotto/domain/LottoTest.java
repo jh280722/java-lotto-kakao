@@ -21,7 +21,7 @@ public class LottoTest {
     }
 
     @Test
-    void invalid_번호개수() {
+    void invalidLottoSize() {
         assertThatThrownBy(() -> {
             Lotto.of(Arrays.asList(1, 5, 45, 2, 3, 7, 9));
         }).isInstanceOf(IllegalArgumentException.class);
@@ -32,7 +32,7 @@ public class LottoTest {
     }
 
     @Test
-    void invalid_범위() {
+    void invalidRange() {
         assertThatThrownBy(() -> {
             Lotto.of(Arrays.asList(0, 2, 3, 4, 5, 6));
         }).isInstanceOf(IllegalArgumentException.class);
@@ -40,17 +40,5 @@ public class LottoTest {
         assertThatThrownBy(() -> {
             Lotto.of(Arrays.asList(1, 3, 5, 46, 2, 4));
         }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void sort() {
-        assertThat(Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6)))
-                .isEqualTo(Lotto.of(Arrays.asList(2, 1, 3, 4, 5, 6)));
-    }
-
-    @Test
-    void create() {
-        assertThat(Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6)))
-                .isEqualTo(Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6)));
     }
 }

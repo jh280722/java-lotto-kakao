@@ -1,18 +1,22 @@
 package lotto.view;
 
-import lotto.DTO.LottoResults;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Price;
-import lotto.utils.LottoResult;
+import lotto.domain.Money;
+import lotto.domain.result.LottoResult;
+import lotto.domain.result.LottoResults;
+
+import java.util.Map;
 
 public class OutputView {
+    public static final String LINE_BREAK = "\n";
+
     public static void printLottos(Lottos lottos) {
         StringBuilder lottosString = new StringBuilder();
 
         for (Lotto lotto : lottos.getLottos()) {
             lottosString.append(lotto);
-            lottosString.append('\n');
+            lottosString.append(LINE_BREAK);
         }
 
         System.out.println(lottosString);
@@ -22,18 +26,22 @@ public class OutputView {
         System.out.println("총 수익률은 " + String.format("%.2f", lottoResults.getYield()) + "입니다.");
     }
 
-    public static void printLottoCount(Price price) {
-        System.out.println(price.count() + "개를 구매했습니다.");
+    public static void printLottoCount(Money price) {
+        System.out.println(price.countLottoTicket() + "개를 구매했습니다.");
     }
 
     public static void printLottoResults(LottoResults lottoResults) {
         StringBuilder lottoResultsString = new StringBuilder();
-        lottoResultsString.append("3개 일치 (" + LottoResult.FIFTH.getReward() + "원)- " + lottoResults.getResultCount(LottoResult.FIFTH) + "개\n");
-        lottoResultsString.append("4개 일치 (" + LottoResult.FOURTH.getReward() + "원)- " + lottoResults.getResultCount(LottoResult.FOURTH) + "개\n");
-        lottoResultsString.append("5개 일치 (" + LottoResult.THIRD.getReward() + "원)- " + lottoResults.getResultCount(LottoResult.THIRD) + "개\n");
-        lottoResultsString.append("5개 일치, 보너스 볼 일치(" + LottoResult.SECOND.getReward() + "원)- " + lottoResults.getResultCount(LottoResult.SECOND) + "개\n");
-        lottoResultsString.append("6개일일치 (" + LottoResult.FIRST.getReward() + "원)- " + lottoResults.getResultCount(LottoResult.FIRST) + "개");
+        lottoResultsString.append("당첨 통계")
+                .append(LINE_BREAK)
+                .append("---------")
+                .append(LINE_BREAK);
 
+        for (Map.Entry<LottoResult, Long> entry : lottoResults.getLOTTO_RESULTS().entrySet()) {
+            lottoResultsString.append(entry.getKey().getRewardExplain())
+                    .append(entry.getValue())
+                    .append(LINE_BREAK);
+        }
         System.out.println(lottoResultsString);
     }
 }

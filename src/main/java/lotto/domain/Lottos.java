@@ -1,10 +1,9 @@
 package lotto.domain;
 
-import lotto.utils.LottoResult;
+import lotto.domain.result.LottoResult;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Lottos {
     public static final int LIMIT_NUMBER = 6;
@@ -14,11 +13,11 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos getLottosInstance(int limitNumber) {
+    public static Lottos createRandomLottos(int limitNumber) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < limitNumber; ++i) {
-            lottos.add(new Lotto(RandomNo.generateRandomNos(LIMIT_NUMBER)));
+            lottos.add(new Lotto(RandomNo.generateRandomNumbers(LIMIT_NUMBER)));
         }
 
         return new Lottos(lottos);
@@ -28,10 +27,10 @@ public class Lottos {
         return lottos.size();
     }
 
-    public List<LottoResult> allConfirm(WinningLotto winningLotto) {
+    public List<LottoResult> match(WinningLotto winningLotto) {
         List<LottoResult> lottoResults = new ArrayList<>();
         lottos.stream()
-                .map(winningLotto::confirmLotto)
+                .map(winningLotto::match)
                 .forEach(lottoResults::add);
         return lottoResults;
     }
@@ -40,16 +39,4 @@ public class Lottos {
         return lottos;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Lottos lottos1 = (Lottos) o;
-        return Objects.equals(lottos, lottos1.lottos);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lottos);
-    }
 }

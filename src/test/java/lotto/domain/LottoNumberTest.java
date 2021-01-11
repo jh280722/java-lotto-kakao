@@ -12,7 +12,7 @@ public class LottoNumberTest {
     }
 
     @Test
-    void invalid_범위() {
+    void invalidRange() {
         assertThatThrownBy(() -> {
             LottoNumber.of(0);
         }).isInstanceOf(IllegalArgumentException.class);

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.DTO.LottoResults;
+import lotto.domain.result.LottoResults;
 import lotto.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -8,14 +8,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoSimulation {
-    private final Price price;
+    private final Money price;
     private final WinningLotto winningLotto;
     private final Lottos lottos;
 
-    public LottoSimulation(Price price, String text, String bonusBall) {
+    public LottoSimulation(Money price, String winningLottoText, String bonusBall) {
         this.price = price;
-        this.winningLotto = initWinningLotto(StringUtils.splitDigit(text), bonusBall);
-        this.lottos = Lottos.getLottosInstance(this.price.count());
+        this.winningLotto = initWinningLotto(StringUtils.splitDigit(winningLottoText), bonusBall);
+        this.lottos = Lottos.createRandomLottos(this.price.countLottoTicket());
     }
 
     private WinningLotto initWinningLotto(String[] lottoNumbers, String bonusBall) {
@@ -27,7 +27,7 @@ public class LottoSimulation {
         return new WinningLotto(new Lotto(lotto), LottoNumber.of(bonusBall));
     }
 
-    public LottoResults confirmLottos() {
-        return new LottoResults(lottos.allConfirm(winningLotto), price);
+    public LottoResults match() {
+        return LottoResults.of(lottos.match(winningLotto), price);
     }
 }

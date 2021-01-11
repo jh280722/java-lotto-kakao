@@ -5,17 +5,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class RandomNo {
-    public static final int ZERO = 0;
+    public static final int FIRST_INDEX = 0;
     public static final int SCOPE = 45;
 
-    public static List<LottoNumber> generateRandomNos(final int lottoNumberSize) {
-        List<LottoNumber> lottoNos = new ArrayList<>();
+    public static List<LottoNumber> generateRandomNumbers(final int lottoNumberSize) {
+        List<LottoNumber> lottoNumbers = new ArrayList<>();
 
         for (int i = 1; i <= SCOPE; i++) {
-            lottoNos.add(LottoNumber.of(i));
+            lottoNumbers.add(LottoNumber.of(i));
         }
 
-        Collections.shuffle(lottoNos);
-        return lottoNos.subList(ZERO, lottoNumberSize);
+        Collections.shuffle(lottoNumbers);
+        return lottoNumbers.subList(FIRST_INDEX, lottoNumberSize);
     }
 }
