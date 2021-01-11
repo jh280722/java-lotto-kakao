@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.domain.result.LottoResults;
 import lotto.domain.LottoSimulation;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.dto.LottoResultsDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,7 +19,7 @@ public class LottoSimulationApp {
         String bonusBall = InputView.getBonusBall();
 
         LottoSimulation lottoSimulation = new LottoSimulation(price, winningLottoText, bonusBall);
-        LottoResults lottoResults = lottoSimulation.match();
+        LottoResultsDto lottoResults = LottoResultsDto.from(lottoSimulation.match());
 
         OutputView.printLottoResults(lottoResults);
         OutputView.printYield(lottoResults);

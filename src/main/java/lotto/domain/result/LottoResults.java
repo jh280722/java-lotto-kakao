@@ -12,7 +12,6 @@ import static java.util.stream.Collectors.groupingBy;
 
 public class LottoResults {
     private static final long INITIAL_REWARD = 0L;
-    public static final long DEFAULT_COUNT = 0L;
     private final Map<LottoResult, Long> LOTTO_RESULTS;
     private final Money price;
     private final Money reward;
@@ -47,9 +46,5 @@ public class LottoResults {
 
     public Map<LottoResult, Long> getLOTTO_RESULTS() {
         return LOTTO_RESULTS;
-    }
-
-    public long getResultCount(LottoResult lottoResult) {
-        return LOTTO_RESULTS.get(lottoResult);
     }
 }
