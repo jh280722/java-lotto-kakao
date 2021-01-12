@@ -1,8 +1,8 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoTicketCount;
 import lotto.domain.Lottos;
-import lotto.domain.Money;
 import lotto.domain.result.LottoResult;
 import lotto.domain.result.LottoResults;
 
@@ -23,14 +23,6 @@ public class OutputView {
         System.out.println(lottosString);
     }
 
-    public static void printYield(LottoResults lottoResults) {
-        System.out.println("총 수익률은 " + String.format("%.2f", lottoResults.getYield()) + "입니다.");
-    }
-
-    public static void printLottoCount(Money price) {
-        System.out.println(price.countLottoTicket() + "개를 구매했습니다.");
-    }
-
     public static void printLottoResults(LottoResults lottoResults) {
         StringBuilder lottoResultsString = new StringBuilder();
         lottoResultsString.append("당첨 통계")
@@ -45,11 +37,20 @@ public class OutputView {
                 .append(LINE_BREAK);
         }
         System.out.println(lottoResultsString);
+        System.out.println("총 수익률은 " + String.format("%.2f", lottoResults.getYield()) + "입니다.");
     }
 
     private static List<LottoResult> getReversedLottoResult() {
         List<LottoResult> lottoResultValues = LottoResult.notNothingValues();
         Collections.reverse(lottoResultValues);
         return lottoResultValues;
+    }
+
+    public static void printBuyingManualLotto() {
+        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+    }
+
+    public static void printLottoCount(LottoTicketCount manualLottoCount, LottoTicketCount lottoCount) {
+        System.out.println("수동으로 " + manualLottoCount.getLottoTicketCount() + "장, 자동으로 " + lottoCount.getLottoTicketCount() + "개를 구매했습니다.");
     }
 }

@@ -20,8 +20,8 @@ public class Lottos {
         lottos.add(lotto);
     }
 
-    public void addRandomLottos(int lottoTicketNumber) {
-        for (int i = 0; i < lottoTicketNumber; ++i) {
+    public void addRandomLottos(LottoTicketCount lottoTicketNumber) {
+        for (int i = 0; i < lottoTicketNumber.getLottoTicketCount(); ++i) {
             lottos.add(Lotto.of(RandomNo.generateRandomNumbers(LIMIT_NUMBER)));
         }
     }

@@ -17,7 +17,7 @@ public class LottoNumberTest {
     }
 
     @Test
-    void invalidRange() {
+    void invalidRangeException() {
         assertThatThrownBy(() -> {
             LottoNumber.of(0);
         }).isInstanceOf(IllegalArgumentException.class);

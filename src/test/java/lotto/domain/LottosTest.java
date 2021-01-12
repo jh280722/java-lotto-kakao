@@ -43,7 +43,7 @@ public class LottosTest {
     @Test
     void addRandomLottos() {
         Lottos lottos = new Lottos();
-        lottos.addRandomLottos(3);
+        lottos.addRandomLottos(LottoTicketCount.of(3));
         assertThat(lottos.size()).isEqualTo(3);
     }
 }

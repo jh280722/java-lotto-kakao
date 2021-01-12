@@ -29,7 +29,7 @@ public class Money {
         return money < MINIMUM_MONEY;
     }
 
-    public int countLottoTicket() {
+    public int countLotto() {
         return (int) (money / DIV_NO);
     }
 
