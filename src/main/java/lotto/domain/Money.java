@@ -9,7 +9,7 @@ public class Money {
 
     private Money(long money) {
         if (isInvalid(money)) {
-            throw new IllegalArgumentException("가격은 음수가 될 수 없습니다.");
+            throw new IllegalArgumentException("형식이 맞지 않습니다.");
         }
         this.money = money;
     }
