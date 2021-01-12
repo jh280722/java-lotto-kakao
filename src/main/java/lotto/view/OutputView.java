@@ -6,7 +6,8 @@ import lotto.domain.Money;
 import lotto.domain.result.LottoResult;
 import lotto.domain.result.LottoResults;
 
-import java.util.Map;
+import java.util.Collections;
+import java.util.List;
 
 public class OutputView {
     public static final String LINE_BREAK = "\n";
@@ -37,12 +38,18 @@ public class OutputView {
                 .append("---------")
                 .append(LINE_BREAK);
 
-        for (Map.Entry<LottoResult, Long> entry : lottoResults.getLottoResults().entrySet()) {
-            lottoResultsString.append(entry.getKey().getRewardExplain())
-                    .append(entry.getValue())
-                    .append("개")
-                    .append(LINE_BREAK);
+        for (LottoResult lottoResult : getReversedLottoResult()) {
+            lottoResultsString.append(lottoResult.getRewardExplain())
+                .append(lottoResults.getCount(lottoResult))
+                .append("개")
+                .append(LINE_BREAK);
         }
         System.out.println(lottoResultsString);
+    }
+
+    private static List<LottoResult> getReversedLottoResult() {
+        List<LottoResult> lottoResultValues = LottoResult.notNothingValues();
+        Collections.reverse(lottoResultValues);
+        return lottoResultValues;
     }
 }

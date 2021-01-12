@@ -1,6 +1,8 @@
 package lotto.domain.result;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.domain.result.BonusBallCondition.*;
 
@@ -38,5 +40,11 @@ public enum LottoResult {
 
     public String getRewardExplain() {
         return rewardExplain;
+    }
+
+    public static List<LottoResult> notNothingValues() {
+        return Arrays.stream(LottoResult.values())
+                .filter(lottoResult -> lottoResult != LottoResult.NOTHING)
+                .collect(Collectors.toList());
     }
 }

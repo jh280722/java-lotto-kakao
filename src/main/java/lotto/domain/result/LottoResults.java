@@ -12,33 +12,26 @@ import static java.util.stream.Collectors.groupingBy;
 
 public class LottoResults {
     private static final long INITIAL_REWARD = 0L;
-    public static final long DEFAULT_COUNT = 0L;
-    private final Map<LottoResult, Long> lottoResults;
+    private final Map<LottoResult, Long> lottoResultsAndCount;
     private final Money price;
     private final Money reward;
 
     private LottoResults(Map<LottoResult, Long> lottoResults, Money price) {
-        this.lottoResults = Collections.unmodifiableMap(lottoResults);
+        this.lottoResultsAndCount = Collections.unmodifiableMap(lottoResults);
         this.price = price;
         this.reward = calculateReward();
     }
 
     public static LottoResults of(List<LottoResult> lottoResults, Money price) {
-        Map<LottoResult, Long> lotto_Results = lottoResults.stream()
+        Map<LottoResult, Long> lottoResultsAndCount = lottoResults.stream()
                 .collect(groupingBy(Function.identity(), counting()));
-        fillDefaultCount(lotto_Results);
-        return new LottoResults(lotto_Results, price);
-    }
-
-    private static void fillDefaultCount(Map<LottoResult, Long> lotto_Results) {
-        for (LottoResult lottoResult : LottoResult.values()) {
-            lotto_Results.putIfAbsent(lottoResult, DEFAULT_COUNT);
-        }
+        lottoResultsAndCount.remove(LottoResult.NOTHING);
+        return new LottoResults(lottoResultsAndCount, price);
     }
 
     private Money calculateReward() {
         long reward = INITIAL_REWARD;
-        for (Map.Entry<LottoResult, Long> entry : lottoResults.entrySet()) {
+        for (Map.Entry<LottoResult, Long> entry : lottoResultsAndCount.entrySet()) {
             reward += entry.getKey().getReward() * entry.getValue();
         }
         return Money.of(reward);
@@ -52,8 +45,10 @@ public class LottoResults {
         return reward;
     }
 
-    public Map<LottoResult, Long> getLottoResults() {
-        return lottoResults;
+    public long getCount(LottoResult lottoResult) {
+        if (lottoResultsAndCount.get(lottoResult) == null) {
+            return 0;
+        }
+        return lottoResultsAndCount.get(lottoResult);
     }
-
 }
