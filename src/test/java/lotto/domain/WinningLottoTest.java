@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class WinningLottoTest {
     @Test
     void matchLotto() {
-        WinningLotto winningLotto = WinningLotto.of(Arrays.asList(1, 2, 3, 4, 5, 6), "10");
+        WinningLotto winningLotto = WinningLotto.of("1, 2, 3, 4, 5, 6", "10");
 
         assertThat(winningLotto.match(Lotto.of(Arrays.asList(5, 6, 7, 8, 9, 10))))
                 .isEqualTo(LottoResult.NOTHING);

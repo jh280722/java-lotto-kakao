@@ -4,7 +4,6 @@ import lotto.domain.LottoSimulation;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.result.LottoResults;
-
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,7 +12,8 @@ public class LottoSimulationApp {
         Money price = Money.of(InputView.getPrice());
         OutputView.printLottoCount(price);
 
-        Lottos lottos = Lottos.createRandomLottos(price.countLottoTicket());
+        Lottos lottos = new Lottos();
+        lottos.addRandomLottos(price.countLottoTicket());
         OutputView.printLottos(lottos);
 
         String winningLottoText = InputView.getWinningLottoNo();

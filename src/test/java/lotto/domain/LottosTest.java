@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LottosTest {
     @Test
     void match2() {
-        WinningLotto winningLotto = WinningLotto.of(Arrays.asList(1,2,3,4,5,6),"7");
+        WinningLotto winningLotto = WinningLotto.of("1,2,3,4,5,6","7");
 
         Lottos lottos = new Lottos(Arrays.asList(
                 Lotto.of(Arrays.asList(1,2,3,4,5,6)),
@@ -22,7 +22,7 @@ public class LottosTest {
 
     @Test
     void match() {
-        WinningLotto winningLotto = WinningLotto.of(Arrays.asList(1,2,3,4,5,6),"7");
+        WinningLotto winningLotto = WinningLotto.of("1,2,3,4,5,6","7");
 
         Lottos lottos = new Lottos(Arrays.asList(
                 Lotto.of(Arrays.asList(1,2,3,4,5,6))
@@ -32,8 +32,18 @@ public class LottosTest {
     }
 
     @Test
-    void getSize() {
-        Lottos lottos = Lottos.createRandomLottos(3);
+    void addManualLotto() {
+        Lottos lottos = new Lottos();
+        lottos.addManualLotto(Lotto.of("8, 21, 23, 41, 42, 43"));
+        lottos.addManualLotto(Lotto.of("3, 5, 11, 16, 32, 38"));
+        lottos.addManualLotto(Lotto.of("7, 11, 16, 35, 36, 44"));
+        assertThat(lottos.size()).isEqualTo(3);
+    }
+
+    @Test
+    void addRandomLottos() {
+        Lottos lottos = new Lottos();
+        lottos.addRandomLottos(3);
         assertThat(lottos.size()).isEqualTo(3);
     }
 }

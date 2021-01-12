@@ -9,18 +9,21 @@ public class Lottos {
     public static final int LIMIT_NUMBER = 6;
     private final List<Lotto> lottos;
 
+    public Lottos() {
+        this(new ArrayList<>());
+    }
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static Lottos createRandomLottos(int limitNumber) {
-        List<Lotto> lottos = new ArrayList<>();
+    public void addManualLotto(Lotto lotto) {
+        lottos.add(lotto);
+    }
 
-        for (int i = 0; i < limitNumber; ++i) {
+    public void addRandomLottos(int lottoTicketNumber) {
+        for (int i = 0; i < lottoTicketNumber; ++i) {
             lottos.add(Lotto.of(RandomNo.generateRandomNumbers(LIMIT_NUMBER)));
         }
-
-        return new Lottos(lottos);
     }
 
     public int size() {
