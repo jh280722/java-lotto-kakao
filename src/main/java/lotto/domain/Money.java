@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Money {
     private static final int DIV_NO = 1000;
-    public static final int MINIMUM_MONEY = 0;
+    private static final int MINIMUM_MONEY = 0;
     private final long money;
 
     private Money(long money) {

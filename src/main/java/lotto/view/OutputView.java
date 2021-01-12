@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class OutputView {
-    public static final String LINE_BREAK = "\n";
+    private static final String LINE_BREAK = "\n";
 
     public static void printLottos(Lottos lottos) {
         StringBuilder lottosString = new StringBuilder();

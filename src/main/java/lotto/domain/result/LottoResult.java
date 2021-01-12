@@ -18,6 +18,7 @@ public enum LottoResult implements Comparable<LottoResult> {
     private final BonusBallCondition condition;
     private final long reward;
     private final String rewardExplain;
+    private LottoResult a;
 
     LottoResult(int matchNumber, BonusBallCondition bonusBallCondition, long reward, String rewardExplain) {
         this.matchNumber = matchNumber;
