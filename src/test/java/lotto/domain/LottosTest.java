@@ -32,18 +32,11 @@ public class LottosTest {
     }
 
     @Test
-    void addManualLotto() {
+    void addLotto() {
         Lottos lottos = new Lottos();
-        lottos.addManualLotto(Lotto.of(Arrays.asList(8, 21, 23, 41, 42, 43)));
-        lottos.addManualLotto(Lotto.of(Arrays.asList(3, 5, 11, 16, 32, 38)));
-        lottos.addManualLotto(Lotto.of(Arrays.asList(7, 11, 16, 35, 36, 44)));
-        assertThat(lottos.size()).isEqualTo(3);
-    }
-
-    @Test
-    void addRandomLottos() {
-        Lottos lottos = new Lottos();
-        lottos.addRandomLottos(LottoTicketCount.of(3));
+        lottos.addLotto(Lotto.of(Arrays.asList(8, 21, 23, 41, 42, 43)));
+        lottos.addLotto(Lotto.of(Arrays.asList(3, 5, 11, 16, 32, 38)));
+        lottos.addLotto(Lotto.of(Arrays.asList(7, 11, 16, 35, 36, 44)));
         assertThat(lottos.size()).isEqualTo(3);
     }
 }

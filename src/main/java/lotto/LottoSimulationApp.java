@@ -1,40 +1,16 @@
 package lotto;
 
-import lotto.domain.*;
-import lotto.domain.result.LottoResults;
-import lotto.utils.StringUtils;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.controller.LottoSimulationController;
+import lotto.domain.Lottos;
+import lotto.domain.Money;
 
 public class LottoSimulationApp {
     public static void main(String[] args) {
-        Money price = Money.of(InputView.getPrice());
-        LottoTicketCount autoLottoTicketCount = LottoTicketCount.of(price.countLotto());
-        LottoTicketCount manualLottoTicketCount = LottoTicketCount.of(InputView.getManualLottoTicketCount());
+        LottoSimulationController lottoSimulationController = new LottoSimulationController();
+        Money price = lottoSimulationController.getPrice();
 
-        OutputView.printBuyingManualLotto();
-        autoLottoTicketCount = autoLottoTicketCount.useLottoTicket(manualLottoTicketCount);
+        Lottos lottos = lottoSimulationController.buyLottoTickets(price);
 
-        Lottos lottos = buyLottoTickets(autoLottoTicketCount, manualLottoTicketCount);
-
-        LottoSimulation lottoSimulation = new LottoSimulation(InputView.getWinningLottoNo(), InputView.getBonusBall());
-        LottoResults lottoResults = LottoResults.of(lottoSimulation.match(lottos), price);
-
-        OutputView.printLottoResults(lottoResults);
-    }
-
-    public static Lottos buyLottoTickets(LottoTicketCount autoLottoTicketCount, LottoTicketCount manualLottoTicketCount) {
-        Lottos lottos = new Lottos();
-
-        for (int i = 0; i < manualLottoTicketCount.getLottoTicketCount(); i++) {
-            lottos.addManualLotto(Lotto.of(StringUtils
-                    .convertToIntegerList(InputView.getManualLotto().split(","))));
-        }
-        lottos.addRandomLottos(autoLottoTicketCount);
-
-        OutputView.printLottoCount(manualLottoTicketCount, autoLottoTicketCount);
-        OutputView.printLottos(lottos);
-
-        return lottos;
+        lottoSimulationController.printLottoSimulationResult(lottos, price);
     }
 }

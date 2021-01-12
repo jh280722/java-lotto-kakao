@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
-    public static final int LIMIT_NUMBER = 6;
     private final List<Lotto> lottos;
 
     public Lottos() {
@@ -16,14 +15,8 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public void addManualLotto(Lotto lotto) {
+    public void addLotto(Lotto lotto) {
         lottos.add(lotto);
-    }
-
-    public void addRandomLottos(LottoTicketCount lottoTicketNumber) {
-        for (int i = 0; i < lottoTicketNumber.getLottoTicketCount(); ++i) {
-            lottos.add(Lotto.of(RandomNo.generateRandomNumbers(LIMIT_NUMBER)));
-        }
     }
 
     public int size() {
