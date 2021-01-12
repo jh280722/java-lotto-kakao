@@ -6,7 +6,7 @@ import lotto.domain.Lottos;
 import lotto.domain.result.LottoResult;
 import lotto.domain.result.LottoResults;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class OutputView {
@@ -42,7 +42,7 @@ public class OutputView {
 
     private static List<LottoResult> getReversedLottoResult() {
         List<LottoResult> lottoResultValues = LottoResult.notNothingValues();
-        Collections.reverse(lottoResultValues);
+        lottoResultValues.sort(Comparator.comparing(LottoResult::getMatchNumber));
         return lottoResultValues;
     }
 

@@ -30,9 +30,7 @@ public class Lotto {
 
     public static Lotto of(String lottoNumbers) {
         List<Integer> lotto = StringUtils.convertToIntegerList(lottoNumbers.split(","));
-        return new Lotto(lotto.stream()
-                .map(LottoNumber::of)
-                .collect(Collectors.toList()));
+        return Lotto.of(lotto);
     }
 
     private boolean isDuplicate(List<LottoNumber> lotto) {

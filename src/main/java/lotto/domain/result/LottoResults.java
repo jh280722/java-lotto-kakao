@@ -25,7 +25,6 @@ public class LottoResults {
     public static LottoResults of(List<LottoResult> lottoResults, Money price) {
         Map<LottoResult, Long> lottoResultsAndCount = lottoResults.stream()
                 .collect(groupingBy(Function.identity(), counting()));
-        lottoResultsAndCount.remove(LottoResult.NOTHING);
         return new LottoResults(lottoResultsAndCount, price);
     }
 
