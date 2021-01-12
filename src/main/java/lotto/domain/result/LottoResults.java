@@ -13,12 +13,12 @@ import static java.util.stream.Collectors.groupingBy;
 public class LottoResults {
     private static final long INITIAL_REWARD = 0L;
     public static final long DEFAULT_COUNT = 0L;
-    private final Map<LottoResult, Long> LOTTO_RESULTS;
+    private final Map<LottoResult, Long> lottoResults;
     private final Money price;
     private final Money reward;
 
     private LottoResults(Map<LottoResult, Long> lottoResults, Money price) {
-        this.LOTTO_RESULTS = Collections.unmodifiableMap(lottoResults);
+        this.lottoResults = Collections.unmodifiableMap(lottoResults);
         this.price = price;
         this.reward = calculateReward();
     }
@@ -38,7 +38,7 @@ public class LottoResults {
 
     private Money calculateReward() {
         long reward = INITIAL_REWARD;
-        for (Map.Entry<LottoResult, Long> entry : LOTTO_RESULTS.entrySet()) {
+        for (Map.Entry<LottoResult, Long> entry : lottoResults.entrySet()) {
             reward += entry.getKey().getReward() * entry.getValue();
         }
         return Money.of(reward);
@@ -52,7 +52,8 @@ public class LottoResults {
         return reward;
     }
 
-    public Map<LottoResult, Long> getLOTTO_RESULTS() {
-        return LOTTO_RESULTS;
+    public Map<LottoResult, Long> getLottoResults() {
+        return lottoResults;
     }
+
 }

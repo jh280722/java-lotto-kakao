@@ -24,7 +24,7 @@ public class LottoTest {
     }
 
     @Test
-    void StringEqual() {
+    void stringEqual() {
         assertThat(Lotto.of(Arrays.asList(6, 2, 3, 4, 5, 1)).toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
