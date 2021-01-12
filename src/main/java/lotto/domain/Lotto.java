@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.utils.StringUtils;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
@@ -26,11 +24,6 @@ public class Lotto {
         return new Lotto(lotto.stream()
                 .map(LottoNumber::of)
                 .collect(Collectors.toList()));
-    }
-
-    public static Lotto of(String lottoNumbers) {
-        List<Integer> lotto = StringUtils.convertToIntegerList(lottoNumbers.split(","));
-        return Lotto.of(lotto);
     }
 
     private boolean isDuplicate(List<LottoNumber> lotto) {

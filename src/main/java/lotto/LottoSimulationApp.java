@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.*;
 import lotto.domain.result.LottoResults;
+import lotto.utils.StringUtils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -26,7 +27,8 @@ public class LottoSimulationApp {
         Lottos lottos = new Lottos();
 
         for (int i = 0; i < manualLottoTicketCount.getLottoTicketCount(); i++) {
-            lottos.addManualLotto(Lotto.of(InputView.getManualLotto()));
+            lottos.addManualLotto(Lotto.of(StringUtils
+                    .convertToIntegerList(InputView.getManualLotto().split(","))));
         }
         lottos.addRandomLottos(autoLottoTicketCount);
 
