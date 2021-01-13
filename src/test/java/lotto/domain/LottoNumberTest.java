@@ -12,12 +12,12 @@ public class LottoNumberTest {
     }
 
     @Test
-    void StringEqual() {
+    void stringEqual() {
         assertThat(LottoNumber.of(3).toString()).isEqualTo("3");
     }
 
     @Test
-    void invalidRange() {
+    void invalidRangeException() {
         assertThatThrownBy(() -> {
             LottoNumber.of(0);
         }).isInstanceOf(IllegalArgumentException.class);

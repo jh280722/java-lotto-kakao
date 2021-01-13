@@ -24,19 +24,19 @@ public class LottoTest {
     }
 
     @Test
-    void StringEqual() {
+    void stringEqual() {
         assertThat(Lotto.of(Arrays.asList(6, 2, 3, 4, 5, 1)).toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
     @Test
-    void duplicate() {
+    void duplicateException() {
         assertThatThrownBy(() -> {
             Lotto.of(Arrays.asList(1, 1, 3, 4, 5, 6));
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void invalidLottoSize() {
+    void invalidLottoSizeException() {
         assertThatThrownBy(() -> {
             Lotto.of(Arrays.asList(1, 5, 45, 2, 3, 7, 9));
         }).isInstanceOf(IllegalArgumentException.class);
@@ -47,7 +47,7 @@ public class LottoTest {
     }
 
     @Test
-    void invalidRange() {
+    void invalidRangeException() {
         assertThatThrownBy(() -> {
             Lotto.of(Arrays.asList(0, 2, 3, 4, 5, 6));
         }).isInstanceOf(IllegalArgumentException.class);

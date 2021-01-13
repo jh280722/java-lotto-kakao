@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class Money {
     private static final int DIV_NO = 1000;
-    public static final int MINIMUM_MONEY = 0;
+    private static final int MINIMUM_MONEY = 0;
     private final long money;
 
     private Money(long money) {
         if (isInvalid(money)) {
-            throw new IllegalArgumentException("가격은 음수가 될 수 없습니다.");
+            throw new IllegalArgumentException("형식이 맞지 않습니다.");
         }
         this.money = money;
     }
@@ -29,7 +29,7 @@ public class Money {
         return money < MINIMUM_MONEY;
     }
 
-    public int countLottoTicket() {
+    public int countLotto() {
         return (int) (money / DIV_NO);
     }
 

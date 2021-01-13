@@ -29,10 +29,14 @@ public class LottoNumber implements Comparable<LottoNumber> {
     }
 
     public static LottoNumber of(int lottoNumber) {
-        if (LOTTO_NUMBERS.get(lottoNumber) == null)
+        checkRange(lottoNumber);
+        return LOTTO_NUMBERS.get(lottoNumber);
+    }
+
+    private static void checkRange(int lottoNumber) {
+        if (lottoNumber < MIN_LOTTO_NUMBER || lottoNumber > MAX_LOTTO_NUMBER)
             throw new IllegalArgumentException(
                     MIN_LOTTO_NUMBER + " ~ " + MAX_LOTTO_NUMBER + " 범위의 숫자만 입력 가능합니다.");
-        return LOTTO_NUMBERS.get(lottoNumber);
     }
 
     @Override

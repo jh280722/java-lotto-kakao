@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class RandomNo {
-    public static final int FIRST_INDEX = 0;
-    public static final int SCOPE = 45;
+    private static final int FIRST_INDEX = 0;
+    private static final int SCOPE = 45;
 
     public static List<Integer> generateRandomNumbers(final int lottoNumberSize) {
         List<Integer> lottoNumbers = new ArrayList<>();

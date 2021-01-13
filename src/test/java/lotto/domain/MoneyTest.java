@@ -13,12 +13,19 @@ public class MoneyTest {
 
     @Test
     void countLottoTicket() {
-        assertThat(Money.of(1000).countLottoTicket()).isEqualTo(1);
-        assertThat(Money.of(999).countLottoTicket()).isEqualTo(0);
+        assertThat(Money.of(1000).countLotto()).isEqualTo(1);
+        assertThat(Money.of(999).countLotto()).isEqualTo(0);
     }
 
     @Test
-    void negative() {
+    void stringException() {
+        assertThatThrownBy(() -> {
+            Money.of("21w");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void negativeException() {
         assertThatThrownBy(() -> {
             Money.of(-1);
         }).isInstanceOf(IllegalArgumentException.class);
