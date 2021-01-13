@@ -7,20 +7,21 @@ import java.util.stream.Collectors;
 import static lotto.domain.result.BonusBallCondition.*;
 
 public enum LottoResult implements Comparable<LottoResult> {
-    FIFTH(3, DONT_CARE, 5_000L, "3개 일치 (5000원)-"),
-    FIRST(6,DONT_CARE, 2_000_000_000L, "6개 일치 (2000000000원)-"),
-    SECOND(5, CONTAIN_BONUS, 30_000_000L, "5개 일치, 보너스 볼 일치(30000000원)-"),
-    THIRD(5, NOT_CONTAIN_BONUS, 1_500_000L, "5개 일치 (1500000원)-"),
-    FOURTH(4, DONT_CARE, 50_000L, "4개 일치 (50000원)-"),
-    NOTHING(0, DONT_CARE, 0L, "");
+    FIFTH(5,3, DONT_CARE, 5_000L, "3개 일치 (5000원)-"),
+    FIRST(1,6,DONT_CARE, 2_000_000_000L, "6개 일치 (2000000000원)-"),
+    SECOND(2,5, CONTAIN_BONUS, 30_000_000L, "5개 일치, 보너스 볼 일치(30000000원)-"),
+    THIRD(3,5, NOT_CONTAIN_BONUS, 1_500_000L, "5개 일치 (1500000원)-"),
+    FOURTH(4,4, DONT_CARE, 50_000L, "4개 일치 (50000원)-"),
+    NOTHING(6,0, DONT_CARE, 0L, "");
 
+    private final int rank;
     private final int matchNumber;
     private final BonusBallCondition condition;
     private final long reward;
     private final String rewardExplain;
-    private LottoResult a;
 
-    LottoResult(int matchNumber, BonusBallCondition bonusBallCondition, long reward, String rewardExplain) {
+    LottoResult(int rank, int matchNumber, BonusBallCondition bonusBallCondition, long reward, String rewardExplain) {
+        this.rank = rank;
         this.matchNumber = matchNumber;
         this.condition = bonusBallCondition;
         this.reward = reward;
@@ -43,13 +44,13 @@ public enum LottoResult implements Comparable<LottoResult> {
         return rewardExplain;
     }
 
-    public static List<LottoResult> notNothingValues() {
+    public static List<LottoResult> getNotNothingLottoResults() {
         return Arrays.stream(LottoResult.values())
                 .filter(lottoResult -> lottoResult != LottoResult.NOTHING)
                 .collect(Collectors.toList());
     }
 
-    public int getMatchNumber() {
-        return matchNumber;
+    public int getRank() {
+        return rank;
     }
 }

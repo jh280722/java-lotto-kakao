@@ -51,8 +51,9 @@ public class LottoSimulationController {
     }
 
     public void printLottoSimulationResult(Lottos lottos, Money price) {
-        LottoSimulation lottoSimulation = new LottoSimulation(InputView.getWinningLottoNo(), InputView.getBonusBall());
-        LottoResults lottoResults = LottoResults.of(lottoSimulation.match(lottos), price);
+        WinningLotto winningLotto = WinningLotto.of(
+                StringUtils.convertToIntegerList(InputView.getWinningLottoNo().split(",")),InputView.getBonusBall());
+        LottoResults lottoResults = LottoResults.of(lottos.match(winningLotto), price);
 
         OutputView.printLottoResults(lottoResults);
     }
