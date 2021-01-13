@@ -5,10 +5,6 @@ import lotto.domain.Lottos;
 import lotto.domain.result.LottoResult;
 import lotto.domain.result.LottoResults;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 public class OutputView {
     private static final String LINE_BREAK = "\n";
 
@@ -30,7 +26,7 @@ public class OutputView {
                 .append("---------")
                 .append(LINE_BREAK);
 
-        for (LottoResult lottoResult : getReversedLottoResult()) {
+        for (LottoResult lottoResult : LottoResult.getPrize()) {
             lottoResultsString.append(lottoResult.getRewardExplain())
                 .append(lottoResults.getCount(lottoResult))
                 .append("개")
@@ -38,12 +34,6 @@ public class OutputView {
         }
         System.out.println(lottoResultsString);
         System.out.println("총 수익률은 " + String.format("%.2f", lottoResults.getYield()) + "입니다.");
-    }
-
-    private static List<LottoResult> getReversedLottoResult() {
-        List<LottoResult> lottoResultValues = LottoResult.getNotNothingLottoResults();
-        lottoResultValues.sort(Comparator.comparing(LottoResult::getRank).reversed());
-        return lottoResultValues;
     }
 
     public static void printBuyingManualLotto() {
